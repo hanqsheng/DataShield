@@ -1,0 +1,68 @@
+<div class="page page-table" xmlns:font-style="http://www.w3.org/1999/xhtml">
+    <div class="panel panel-default audit-panel">
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-8">
+                <input type="text" name="repoName" id="repoName" maxlength="128" ng-model="formData.repoName"
+                       placeholder="Search for your access audits by service name..." class="audit-search" onkeydown="return searchAccessByServiceName(event)"/>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-access">
+        <thead>
+        <tr class="tr-inactive">
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.POLICY_ID">Policy ID</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.EVENT_TIME">Event Time</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.USER">User</th>
+            <th translate="SYSTEM-AUDIT.ACCESS.SERVICE">Service</th>
+            <th translate="SYSTEM-AUDIT.ACCESS.RESOURCE">Resource</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.ACCESS_TYPE">Access Type</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.RESULT">Result</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.ACCESS_ENFORCER">Access Enforcer</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.CLIENT_IP">Client IP</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.EVENT_COUNT">Event Count</th>
+            <th rowspan="2" translate="SYSTEM-AUDIT.ACCESS.TAGS">Tags</th>
+        </tr>
+        <tr class="tr-inactive">
+            <th translate="SYSTEM-AUDIT.ACCESS.NAME_TYPE">Name/Type</th>
+            <th translate="SYSTEM-AUDIT.ACCESS.NAME_TYPE">Name/Type</th>
+        </tr>
+        </thead>
+        <tbody id="tr_id" ng-repeat="obj in accessTable">
+        <tr>
+            <td rowspan="2">
+                <div ng-if="obj.policyId==1">{{obj.policyId}}</div>
+                <div ng-if="obj.policyId==-1">--</div>
+            </td>
+            <td rowspan="2" class="rowTd" sortable="'eventTime'">{{obj.eventTime}}</td>
+            <td rowspan="2">{{obj.requestUser}}</td>
+            <td>{{obj.repoName}}</td>
+            <td>{{obj.resourcePath}}</td>
+            <td rowspan="2">{{obj.accessType}}</td>
+            <td rowspan="2">
+                <div ng-if="obj.accessResult==1"><span class="label label-success">Allowed</span></div>
+                <div ng-if="obj.accessResult==0"><span class="label label-default">Denied</span></div>
+            </td>
+            <td rowspan="2">{{obj.aclEnforcer}}</td>
+            <td rowspan="2">{{obj.clientIP}}</td>
+            <td rowspan="2">{{obj.eventCount}}</td>
+            <td rowspan="2">{{obj.tags}}</td>
+        </tr>
+        <tr>
+            <td>{{obj.serviceType}}</td>
+            <td>{{obj.resourceType}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p style="font-style:italic" ng-show="!tableLength > 0 && !tableloading">No Access Audit found!</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

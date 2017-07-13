@@ -1,0 +1,52 @@
+<div class="page page-table" xmlns:font-style="http://www.w3.org/1999/xhtml">
+
+    <div class="panel panel-default audit-panel">
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-8">
+                <input type="text" name="loginId" id="loginId" maxlength="128" ng-model="formData.loginId"
+                       placeholder="Search for login sessions by login name..." class="audit-search" onkeydown="return searchSessionsByid(event)"/>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.SESSION_ID">Sessions ID</th>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.LOGIN_ID">Login ID</th>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.RESULT">Result</th>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.LOGIN_TYPE">Login Type</th>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.IP">IP</th>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.USER_AGENT">User Agent</th>
+            <th translate="SYSTEM-AUDIT.LOGIN_SESSIONS.LOGIN_TIME">Login Time</th>
+        </thead>
+
+        <tbody id="tr_id" ng-repeat="obj in LoginSessionTable">
+        <tr>
+            <td>{{obj.id}}</td>
+            <td>{{obj.loginId}}</td>
+            <td>
+                <div ng-if="obj.authStatus==1"><span class="label label-success">Success</span></div>
+                <div ng-if="obj.authStatus==2"><span class="label label-default">Wrong Password</span></div>
+            </td>
+            <td>Username/Password</td>
+            <td>{{obj.requestIP}}</td>
+            <td>{{obj.requestUserAgent}}</td>
+            <td class="rowTd" sortable="'authTime'">{{obj.authTime}}</td>
+        </tr>
+        </tbody>
+
+    </table>
+    <div>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p style="font-style:italic" ng-show="!tableLength > 0 && !tableloading">No Login Session found!</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>
+

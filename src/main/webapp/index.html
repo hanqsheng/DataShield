@@ -1,0 +1,115 @@
+<!doctype html>
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>DataShield大数据安全平台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet'
+          type='text/css'>
+    <!-- needs images, font... therefore can not be part of ui.css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <!-- end needs images -->
+    <link rel="stylesheet" href="styles/pagination.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/group.css">
+    <link rel="stylesheet" href="styles/hdfs.css">
+    <link rel="stylesheet" href="styles/isteven-multi-select.css">
+
+</head>
+<!--<body ui-view data-ng-app="app" id="app" class="nav-min" data-custom-background data-off-canvas-nav data-ng-controller="AppCtrl">-->
+<body ui-view data-ng-app="app" id="app" data-custom-background data-off-canvas-nav data-ng-controller="AppCtrl">
+<!--[if lt IE 9]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+
+<!-- build:js scripts/vendor.js -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/ui.js -->
+
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<!--<script src="bower_components/jquery-spinner/dist/jquery.spinner.min.js"></script>
+<script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+<script src="bower_components/jquery-steps/build/jquery.steps.min.js"></script>
+<script src="bower_components/toastr/toastr.min.js"></script>
+<script src="bower_components/bootstrap-file-input/bootstrap.file-input.js"></script>
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.js"></script>
+&lt;!&ndash;<script src="bower_components/gauge.js/dist/gauge.min.js"></script>
+<script src="bower_components/jquery.easy-pie-chart/dist/angular.easypiechart.min.js"></script>&ndash;&gt;-->
+<script src="bower_components/jquery.slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+<!--<script src="bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+<script src="bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+<script src="bower_components/textAngular/dist/textAngular.min.js"></script>-->
+<script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+<script src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script
+    src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<!-- endbuild -->
+
+<!-- build:js({.tmp,client}) scripts/app.js -->
+<!-- injector:js -->
+<script src="javascript/module/app.module.js"></script>
+<script src="javascript/core/config.route.js"></script>
+<script src="javascript/module/layout.module.js"></script>
+<script src="javascript/core/app.controller.js"></script>
+<script src="javascript/core/i18n.js"></script>
+<script src="javascript/directive/layout.directive.js"></script>
+
+<script src="javascript/plugins/jquery.pagination.js"></script>
+<script src="javascript/plugins/bootstrap.min.js"></script>
+<script src="javascript/plugins/bootbox.js"></script>
+<script src="javascript/plugins/isteven-multi-select.js"></script>
+
+<script src="javascript/controller/preajax.js"></script>
+<script src="javascript/controller/common.js"></script>
+<script src="javascript/controller/utils.js"></script>
+<script src="javascript/controller/hashmap.js"></script>
+<script src="javascript/controller/dashboard/dashboard.js"></script>
+
+<script src="javascript/controller/admin/signout.js"></script>
+<script src="javascript/controller/authorization/authbase.js"></script>
+<script src="javascript/controller/authorization/auth-tbl-base.js"></script>
+<script src="javascript/controller/authorization/auth-add-base.js"></script>
+<script src="javascript/controller/authorization/auth-edit-base.js"></script>
+<script src="javascript/controller/authorization/hdfs.js"></script>
+<script src="javascript/controller/authorization/hive.js"></script>
+<script src="javascript/controller/authorization/servicebase.js"></script>
+<script src="javascript/controller/authorization/hive-service.js"></script>
+<script src="javascript/controller/authorization/hdfs-service.js"></script>
+<script src="javascript/controller/authorization/hbase.js"></script>
+<script src="javascript/controller/authorization/hbase-service.js"></script>
+<script src="javascript/controller/setting/users.js"></script>
+<script src="javascript/controller/setting/groups.js"></script>
+<script src="javascript/controller/setting/permissions.js"></script>
+<script src="javascript/controller/audit/access.js"></script>
+<script src="javascript/controller/audit/admin.js"></script>
+<script src="javascript/controller/audit/plugin.js"></script>
+<script src="javascript/controller/audit/plugin_status.js"></script>
+<script src="javascript/controller/audit/login_sessions.js"></script>
+<script src="javascript/controller/certification/kerberos.js"></script>
+<script src="javascript/controller/certification/user_info.js"></script>
+
+<!-- endinjector -->
+<!-- endbuild -->
+
+
+</body>
+</html>

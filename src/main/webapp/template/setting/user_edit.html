@@ -1,0 +1,81 @@
+<div class="panel panel-default" data-ng-model="status">
+    <div class="panel-heading"><strong><span class="glyphicon glyphicon-user" translate="SYSTEM-SETTING.USER.USER_DETAIL"></span></strong></div>
+    <div class="panel-body ng-scope">
+        <form name="user_edit" class="form-horizontal" data-ng-submit="submitForm()">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.USER_NAME"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" ng-disabled="nameDisabled" data-ng-model="user.name" tabindex="1" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="status=='add'">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.NEW_PASSWORD"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" data-ng-model="user.new_password" tabindex="2" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="status=='add'">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.PASSWORD_CONFIRM"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" data-ng-model="user.password_confirm" tabindex="3" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.FIRST_NAME"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" ng-disabled="firstnameDisabled" data-ng-model="user.firstName" tabindex="4" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.LAST_NAME"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" ng-disabled="lastnameDisabled" data-ng-model="user.lastName" tabindex="5" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.EMAIL_ADDRESS"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="email" class="form-control" required="" ng-disabled="emailDisabled" data-ng-model="user.emailAddress" tabindex="6" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.SELECT_ROLE"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <select ng-disabled="roleDisabled" data-ng-model="user.role" ng-init="user.role='admin'" class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label translate="SYSTEM-SETTING.USER.SELECT_GROUP"></label>
+                    </div>
+                    <div class="col-sm-11">
+                        <span class="label label-warning" ng-if="!isGroupSelectShow" ng-repeat="s_group in user.groupNameList" style="margin-right: 0.3em">{{s_group}}</span>
+                        <div ng-show="isGroupSelectShow" isteven-multi-select input-model="groupList" output-model="selectedItems" button-label="name" item-label="name" tick-property="selected"></div>
+                    </div>
+                </div>
+                <div style="float:right">
+                    <button type="submit" class="btn btn-success" aria-disabled="true" translate="SAVE"></button>
+                    <button class="btn btn-default" tabindex="0" aria-disabled="true" translate="CANCEL"></button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

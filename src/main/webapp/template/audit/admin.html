@@ -1,0 +1,53 @@
+<div class="page page-table" xmlns:font-style="http://www.w3.org/1999/xhtml">
+    <div class="panel panel-default audit-panel">
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-8">
+                <input type="text" name="actions" id="actions" maxlength="128" ng-model="formData.action"
+                       placeholder="Search for your admin audits by actions..." class="audit-search" onkeydown="return searchAdminByActions(event)"/>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr class="tr-inactive">
+            <th translate="SYSTEM-AUDIT.ADMIN.OPERATION">Operation</th>
+            <th translate="SYSTEM-AUDIT.ADMIN.AUDIT_TYPE">Audit Type</th>
+            <th translate="SYSTEM-AUDIT.ADMIN.USER">User</th>
+            <th translate="SYSTEM-AUDIT.ADMIN.DATE">Date(中国标准时间)</th>
+            <th translate="SYSTEM-AUDIT.ADMIN.ACTION">Actions</th>
+            <th translate="SYSTEM-AUDIT.ADMIN.SESSION_ID">Session Id</th>
+        </tr>
+        </thead>
+        <tr id="tr_id" ng-repeat="obj in adminTable">
+            <td>
+                <div ng-if="obj.operation=='Exported policies' || obj.operation='IMPORT START' || obj.operation=='IMPORT END'">{{obj.operation}}</div>
+                <div ng-if="obj.operation!='Exported policies' && obj.operation !='IMPORT START' && obj.operation!='IMPORT END'">{{obj.operation}} <b>{{obj.objectName}}</b></div>
+            </td>
+            <td>{{obj.objectClassType}}</td>
+            <td>
+                <div ng-if="obj.owner==''"> </div>
+                <div ng-if="obj.owner!=''">{{obj.owner}}</div>
+            </td>
+            <td>{{obj.createDate}}</td>
+            <td style="text-transform: capitalize">
+                <label ng-if="obj.action=='update'" class="label label-success" style="background-color: #f3a139">{{obj.action}}</label>
+                <label ng-if="obj.action=='create'" class="label label-success" style="background-color: #9bb921">{{obj.action}}</label>
+                <label ng-if="obj.action=='delete'" class="label label-success" style="background-color: #E94B3B">{{obj.action}}</label>
+                <label ng-if="obj.action!='create' && obj.action!='update' && obj.action!='delete'" class="label label-success" style="background-color: #0088cc">{{obj.action}}</label>
+            </td>
+            <td>{{obj.sessionId}}</td>
+        </tr>
+    </table>
+    <div>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p style="font-style:italic" ng-show="!tableLength > 0 && !tableloading">No Access Audit found!</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="page page-table">
+    <div class="panel panel-default">
+        <div class="panel-heading" ><strong><span class="glyphicon glyphicon-th"  translate="PERMISSION_POLICY.HIVE.HIVE_POLICY"></span></strong></div>
+
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-10">
+                <input type="text" name="keyword" maxlength="128" ng-model="keyword"
+                       placeholder="Search for your policy..." class="search" ng-keyup="searchPolicy($event)"/>
+            </div>
+            <div  class="col-lg-2">
+                <button type="button" class="btn btn-success button-right" ng-click="add()" translate="PERMISSION_POLICY.ADD"></button>
+                <button type="button" class="btn btn-success button-right" ng-click="goEditService()" translate="PERMISSION_POLICY.HIVE.EDIT_SERVICE_CONIFIG"></button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th translate="PERMISSION_POLICY.HDFS.POLICY_NAME">Name</th>
+                <th translate="PERMISSION_POLICY.HDFS.POLICY_STATUS">Status</th>
+                <th translate="PERMISSION_POLICY.HDFS.POLICY_AUDIT_LOGGING">Audit Logging</th>
+                <th translate="PERMISSION_POLICY.HDFS.POLICY_GROUP">Group</th>
+                <th translate="PERMISSION_POLICY.HDFS.POLICY_USERS">Users</th>
+                <th translate="PERMISSION_POLICY.HDFS.POLICY_ACTION">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="obj in hdfsTable">
+                <td><a href ng-click="edit(obj.id)"><p class="text-info">{{obj.name}}</p></a></td>
+                <td>
+                    <div ng-if="obj.isEnabled==true"><span class="label  label-success">true</span></div>
+                    <div ng-if="obj.userSource==false"><span class="label label-primary">false</span></div>
+                </td>
+                <td>
+                    <div ng-if="obj.isAuditEnabled==true"><span class="label  label-success">true</span></div>
+                    <div ng-if="obj.isAuditEnabled==false"><span class="label label-primary">false</span></div>
+                </td>
+                <td>
+                    <span  ng-repeat="policyItem in obj.policyItems">
+                        <span style="margin-right: .3em" ng-repeat="group in policyItem.groups"
+                              class="label label-info">{{group}}
+                        </span>
+                  </span>
+                </td>
+                <td>
+                     <span  ng-repeat="policyItem in obj.policyItems">
+                         <span style="margin-right: .3em" ng-repeat="user in policyItem.users"
+                               class="label label-info">{{user}}
+                        </span>
+                    </span>
+                </td>
+                <td>
+                    <a href title='delete' class = "btn btn-danger"  ng-click="del(obj.id)"><i class="glyphicon glyphicon-trash m-r-5"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p ng-show="!tableLength > 0 && !tableloading">No data</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

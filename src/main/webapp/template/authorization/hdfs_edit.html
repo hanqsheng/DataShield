@@ -1,0 +1,84 @@
+<div class="page page-form">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th" translate="PERMISSION_POLICY.HDFS.HDFS_POLICY_DETAIL"></span></strong>
+        </div>
+        <div class="panel-body">
+            <form name="form" class="form-horizontal form-validation" data-ng-submit="submitPolicyForm()">
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HDFS.POLICY_NAME"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="name" ng-model="formData.name" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.ENABLE"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label class="switch"><input type="checkbox" name="enable"  ng-model="formData.isEnabled"><i></i></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HDFS.RESOURCE_PATH"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="path" ng-model="formData.path" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-3 col-sm-3">
+                        <label><span translate="PERMISSION_POLICY.AUDIT_LOG"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label class="switch"><input type="checkbox" name="enable"  ng-model="formData.isAuditEnabled"><i></i></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.DESC"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <textarea class="form-control" rows="10" ng-model="formData.description"></textarea>
+                    </div>
+                </div>
+                <div class="callout callout-info">
+                    <p><span translate="PERMISSION_POLICY.ALLOW_CONDITIONS"></span></p>
+                </div>
+                <div class="form-group">
+                    <div  class="col-lg-4 col-md-4 col-sm-4">
+                        <label><span translate="SYSTEM-SETTING.GROUP.SYSTEM_SETTING_GROUPS"></span></label>
+                        <div isteven-multi-select input-model="groupList" output-model="selectedGroupItems" button-label="name" item-label="name" tick-property="selected" on-item-click="groupClick( data )"></div>
+                    </div>
+                    <div  class="col-lg-4 col-md-4 col-sm-4">
+                        <label><span translate="SYSTEM-SETTING.USER.SYSTEM_SETTING_USERS"></span></label>
+                        <div isteven-multi-select input-model="userList" output-model="selectedUserItems" button-label="name" item-label="name" tick-property="selected" on-item-click="userClick( data )"></div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.PERMISSIONS"></span></label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="formData.permissions.execute"><span>execute</span></label>
+                        <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="formData.permissions.read"><span>read</span></label>
+                        <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="formData.permissions.write"><span>write</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div  class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="hidden" name="id" value="{{id}}" />
+                        <button type="submit" class="btn btn-primary" translate="OTHER.SAVE"></button>
+                        <button type="button" class="btn btn-inverse" ng-click="goBack()" translate="OTHER.BACK"></button>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="alert alert-info" data-ng-show="showInfoOnSubmit">This is just for demo. In real project, you will submit form with AJAX :)</div>
+            </form>
+        </div>
+    </div>
+</div>

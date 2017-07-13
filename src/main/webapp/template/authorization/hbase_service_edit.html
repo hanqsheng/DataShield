@@ -1,0 +1,117 @@
+<div class="page page-form">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th" translate="PERMISSION_POLICY.HBASE.SERVICE_DETAIL"></span></strong>
+        </div>
+        <div class="panel-body">
+            <form name="form" class="form-horizontal form-validation" data-ng-submit="submitServiceForm()">
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.ENABLE"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label class="switch"><input type="checkbox" name="enable"  ng-model="formData.isEnabled"><i></i></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="SYSTEM-SETTING.USER.USER_NAME"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="username" ng-model="formData.username" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="SYSTEM-SETTING.USER.PASSWORD"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="password" name="password" ng-model="formData.password" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HBASE.HADOOP_SECURITY_AUTHENTICATION"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select ng-disabled="roleDisabled" ng-model="formData.hadoopauthentication" class="form-control">
+                            <option value="simple">Simple</option>
+                            <option value="kerberos">Kerberos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger "></span><span translate="PERMISSION_POLICY.HBASE.HBASE_MASTER_KERBEROS_PRINCIPAL"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="driverclassname" ng-model="formData.master_kerberos" class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HBASE.HBASE_SECURITY_AUTHENTICATION"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select ng-disabled="roleDisabled" ng-model="formData.hbaseauthentication" class="form-control">
+                            <option value="simple">Simple</option>
+                            <option value="kerberos">Kerberos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HBASE.HBASE_ZOOKEEPER_PROPERTY_CLIENTPORT"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="driverclassname" ng-model="formData.zookeeper_clientPort" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HBASE.HBASE_ZOOKEEPER_QUORUM"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="driverclassname" ng-model="formData.zookeeper_quorum" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HBASE.ZOOKEEPER_ZNODE_PARENT"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="driverclassname" ng-model="formData.zookeeper_node" class="form-control" required/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HBASE.COMMON_NAME_CERT"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="cn" ng-model="formData.cn" class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div  class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="submit" class="btn btn-primary" translate="OTHER.SAVE"></button>
+                        <button type="button" class="btn btn-inverse" ng-click="goBack()" data-ng-show="showGoBack" translate="OTHER.BACK"></button>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="alert alert-info" data-ng-show="showInfoOnSubmit">This is just for demo. In real project, you will submit form with AJAX :)</div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="page page-table" xmlns:font-style="http://www.w3.org/1999/xhtml">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate="SYSTEM-SETTING.GROUP.SYSTEM_SETTING_GROUP_LIST">
+        </div>
+
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-8">
+                <input type="text" name="name" id="name" maxlength="128" ng-model="formData.name"
+                       placeholder="Search for your groups..." class="search" onkeydown="return searchGroupByName(event)"/>
+            </div>
+            <div  class="col-lg-2 col-lg-offset-2">
+                <button type="button" data-id="addNewGroup" class="btn btn-success button-right" ng-click="add()" translate="SYSTEM-SETTING.GROUP.ADD_NEW_GROUP"></i>Add New Group</button>
+                <div class="btn-group dropdown open" dropdown="" is-open="status.isopen" style="">
+                    <button type="button" class="btn btn-success dropdown-toggle button-right" translate="SYSTEM-SETTING.GROUP.SET_VISIBILITY" dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="true" aria-disabled="false">
+                        Set Visibility<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="javascript:void(0);" ng-click="setVisibility(1)" data-id="visible" translate="SYSTEM-SETTING.GROUP.VISIBLE">Visible</a></li>
+                        <li><a href="javascript:void(0);" ng-click="setVisibility(0)" data-id="hidden" translate="SYSTEM-SETTING.GROUP.HIDDEN">Hidden</a></li>
+                    </ul>
+                </div>
+                <button type="button" data-id="del" class="btn btn-danger button-right" ng-click="groupsDelete()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th width="20px"><input type="checkbox" ng-click="toggleCheckAll()" ng-model="chkAll" /></th>
+                <th translate="SYSTEM-SETTING.GROUP.GROUP_NAME">Group Name</th>
+                <th translate="SYSTEM-SETTING.GROUP.GROUP_SOURCE">Group Source</th>
+                <th translate="SYSTEM-SETTING.GROUP.VISIBILITY">Visibility</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="tr_id" ng-repeat="obj in groupTable" data-ng-class="{true:'tr-inactive',false:'tr-active'}[obj.visibility==0]">
+                <td width="20px"><input type="checkbox" ng-click="toggleCheck(obj.id,obj.name)" ng-model="obj.checked" /></td>
+                <td><a href="javascript:void(0);" data-id="visible" ng-click="groupDetail(obj.id)">{{obj.name}}</a></td>
+                <td>
+                    <div ng-if="obj.visibility==0"><span class="label label-default">{{obj.groupSource}}</span></div>
+                    <div ng-if="obj.visibility!=0 && obj.groupsource==0"><span class="label label-info">{{obj.groupSource}}</span></div>
+                    <div ng-if="obj.visibility!=0 && obj.groupsource==1"><span class="label label-success">{{obj.groupSource}}</span></div>
+                </td>
+                <td>
+                    <div ng-if="obj.visibility==0"><span class="label label-default">{{obj.isVisible}}</span></div>
+                    <div ng-if="obj.visibility==1"><span class="label label-success">{{obj.isVisible}}</span></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p ng-show="!tableLength > 0 && !tableloading">No Groups found!</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

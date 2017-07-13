@@ -1,0 +1,140 @@
+<div class="page page-form">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th" translate="PERMISSION_POLICY.HDFS.SERVICE_DETAIL"></span></strong>
+        </div>
+        <div class="panel-body">
+            <form name="form" class="form-horizontal form-validation" data-ng-submit="submitServiceForm()">
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.ENABLE"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label class="switch"><input type="checkbox" name="enable"  ng-model="formData.isEnabled"><i></i></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="SYSTEM-SETTING.USER.USER_NAME"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="username" ng-model="formData.username" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="SYSTEM-SETTING.USER.PASSWORD"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="password" name="password" ng-model="formData.password" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HDFS.NAME_NODE_URL"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="driverclassname" ng-model="formData.NamenodeUrl" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HDFS.AUTHORIZATION_ENABLED"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select ng-disabled="roleDisabled" ng-model="formData.authorization" class="form-control">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span class="text-danger ">*</span><span translate="PERMISSION_POLICY.HDFS.AUTHENTICATION_TYPE"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select ng-disabled="roleDisabled" ng-model="formData.authentication" class="form-control">
+                            <option value="simple">Simple</option>
+                            <option value="kerberos">Kerberos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HDFS.HADOOP_SECURITY_AUTH_TO_LOCAL"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="cn" ng-model="formData.auth_to_local" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HDFS.DFS_DATANODE_KERBEROS_PRINCIPAL"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="cn" ng-model="formData.datanode_kerberos" class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HDFS.DFS_NAMENODE_KERBEROS_PRINCIPAL"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="cn" ng-model="formData.namenode_kerberos" class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HDFS.DFS_SECONDARY_NAMENODE_KERBEROS_PRINCIPAL"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="cn" ng-model="formData.secondary_namenode_kerberos" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HDFS.RPC_PROTECTION_TYPE"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select ng-disabled="roleDisabled" ng-model="formData.rpcprotection" class="form-control">
+                            <option value="authentication">Authentication</option>
+                            <option value="integrity">Integrity</option>
+                            <option value="privacy">Privacy</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label><span translate="PERMISSION_POLICY.HDFS.COMMON_NAME_CERT"></span></label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" name="cn" ng-model="formData.cn" class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div  class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="submit" class="btn btn-primary" translate="OTHER.SAVE"></button>
+                        <button type="button" class="btn btn-inverse" ng-click="goBack()" data-ng-show="showGoBack" translate="OTHER.BACK"></button>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="alert alert-info" data-ng-show="showInfoOnSubmit">This is just for demo. In real project, you will submit form with AJAX :)</div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="page page-table" xmlns:font-style="http://www.w3.org/1999/xhtml">
+    <div class="panel panel-default audit-panel">
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-8">
+                <input type="text" name="service_name" id="service_name" maxlength="128" ng-model="formData.service_name"
+                       placeholder="Search for your plugins by service name..." class="audit-search" onkeydown="return searchPluginByServiceName(event)"/>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-plugin">
+        <thead>
+        <tr class="tr-inactive">
+            <th translate="SYSTEM-AUDIT.PLUGIN.EXPORT_DATE">Export Date(中国标准时间)</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN.SERVICE_NAME">Service Name</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN.PLUGIN_ID">Plugin Id</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN.PLUGIN_IP">Plugin IP</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN.HTTP_RESPONSE_CODE">Http Response Code</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN.STATUS">Status</th>
+        </tr>
+        </thead>
+        <tr id="tr_id" ng-repeat="obj in pluginTable">
+            <td>{{obj.createDate}}</td>
+            <td>{{obj.repositoryName}}</td>
+            <td>{{obj.agentId}}</td>
+            <td>{{obj.clientIP}}</td>
+            <td>
+                <div ng-if="obj.httpRetCode==200">
+                    <label class="label label-success" style="background-color: #51a351">{{obj.httpRetCode}}</label>
+                </div>
+                <div ng-if="obj.httpRetCode!=200">
+                    <label class="label label-danger" style="background-color: #E94B3B">{{obj.httpRetCode}}</label>
+                </div>
+            </td>
+            <td>{{obj.syncStatus}}</td>
+        </tr>
+    </table>
+    <div>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p style="font-style:italic" ng-show="!tableLength > 0 && !tableloading">No plugin found!</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

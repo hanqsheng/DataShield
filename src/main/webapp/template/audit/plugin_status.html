@@ -1,0 +1,76 @@
+<div class="page page-table" xmlns:font-style="http://www.w3.org/1999/xhtml">
+    <div class="panel panel-default audit-panel">
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-8">
+                <input type="text" name="hostname" id="hostname" maxlength="128" ng-model="formData.hostname"
+                       placeholder="Search for Plugin Status...." class="audit-search" onkeydown="return searchPluginStatusByHostName(event)"/>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-plugin">
+        <thead>
+        <tr class="tr-inactive">
+            <th rowspan="2" colspan="3" translate="SYSTEM-AUDIT.PLUGIN-STATUS.SERVICE_NAME">Service Name</th>
+            <th rowspan="2" colspan="3" translate="SYSTEM-AUDIT.PLUGIN-STATUS.SERVICE_TYPE">Service Type</th>
+            <th rowspan="2" colspan="3" translate="SYSTEM-AUDIT.PLUGIN-STATUS.HOST_NAME">Host Name</th>
+            <th rowspan="2" colspan="3" translate="SYSTEM-AUDIT.PLUGIN-STATUS.PLUGIN_IP">Plugin IP</th>
+            <th colspan="3" translate="SYSTEM-AUDIT.PLUGIN-STATUS.POLICY_TIME">Policy(Time)</th>
+            <th colspan="3" translate="SYSTEM-AUDIT.PLUGIN-STATUS.TAG_TIME">Tag(Time)</th>
+        </tr>
+        <tr class="tr-inactive">
+            <th translate="SYSTEM-AUDIT.PLUGIN-STATUS.ACTIVE">Active</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN-STATUS.DOWNLOAD">Download</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN-STATUS.LAST_UPDATE">Last Update</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN-STATUS.ACTIVE">Active</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN-STATUS.DOWNLOAD">Download</th>
+            <th translate="SYSTEM-AUDIT.PLUGIN-STATUS.LAST_UPDATE">Last Update</th>
+        </tr>
+        </thead>
+        <tbody  id="tr_id" ng-repeat="obj in pluginStatusTable">
+            <tr>
+                <td rowspan="2" colspan="3">{{obj.serviceName}}</td>
+                <td rowspan="2" colspan="3">{{obj.appType}}</td>
+                <td rowspan="2" colspan="3">{{obj.hostName}}</td>
+                <td rowspan="2" colspan="3">{{obj.ipAddress}}</td>
+            </tr>
+        <tr>
+            <td>
+                <div style="text-align: center" ng-if="obj.info.policyActivationTime=='null'">--</div>
+                <div ng-if="obj.info.policyActivationTime!='null'"><i class="fa fa-exclamation-circle plugin-status-activePolicyAlert"></i>{{obj.info.policyActivationTime}}</div>
+            </td>
+            <td>
+                <div style="text-align: center" ng-if="obj.info.policyDownloadTime=='null'">--</div>
+                <div ng-if="obj.info.policyDownloadTime!='null'">{{obj.info.policyDownloadTime}}</div>
+            </td>
+            <td>
+                <div style="text-align: center" ng-if="obj.info.lastPolicyUpdateTime=='null'">--</div>
+                <div ng-if="obj.info.lastPolicyUpdateTime!='null'">{{obj.info.lastPolicyUpdateTime}}</div>
+            </td>
+            <td>
+                <div style="text-align: center" ng-if="obj.info.tagActivationTime=='null'">--</div>
+                <div ng-if="obj.info.tagActivationTime!='null'"><i class="fa fa-exclamation-circle plugin-status-activePolicyAlert"></i>{{obj.info.tagActivationTime}}</div>
+            </td>
+            <td>
+                <div style="text-align: center" ng-if="obj.info.tagDownloadTime=='null'">--</div>
+                <div ng-if="obj.info.tagDownloadTime!='null'">{{obj.info.tagDownloadTime}}</div>
+            </td>
+            <td>
+                <div style="text-align: center" ng-if="obj.info.lastTagUpdateTime=='null'">--</div>
+                <div ng-if="obj.info.lastTagUpdateTime!='null'">{{obj.info.lastTagUpdateTime}}</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p style="font-style:italic" ng-show="!tableLength > 0 && !tableloading">No plugin status found!</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div id="nav-wrapper">
+    <ul id="nav"
+        data-ng-controller="NavCtrl"
+        data-collapse-nav
+        data-slim-scroll
+        data-highlight-active>
+        <li><a ui-sref="app.home"> <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i><span data-translate="DASHBOARD"></span> </a></li>
+
+        <li>
+            <a ui-sref="app.certification"><i class="fa fa-table"><span class="icon-bg bg-warning"></span></i><span data-translate="CERTIFICATION"></span></a>
+            <ul>
+                <li><a ui-sref="app.certification.kerberos"><i class="fa fa-caret-right"></i><span data-translate="CERTIFICATE.KERBEROS.NAV_NAME"></span></a></li>
+                <li><a ui-sref="app.certification.user_info"><i class="fa fa-caret-right"></i><span data-translate="CERTIFICATE.USER_INFO.NAV_NAME"></span></a></li>
+            </ul>
+        </li>
+
+        <li>
+        <li><a ui-sref="app.test"> <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i><span data-translate="DASHBOARD"></span> </a></li>
+
+        <li>
+            <a ui-sref="app.auth"><i class="fa fa-magic"><span class="icon-bg bg-orange"></span></i><span data-translate="AUTH_POLICY"></span></a>
+            <ul>
+                <li><a ui-sref="app.auth.hdfs"><i class="fa fa-caret-right"></i><span data-translate="AUTH_POLICY_HDFS"></span></a></li>
+                <li><a ui-sref="app.auth.hive"><i class="fa fa-caret-right"></i><span data-translate="AUTH_POLICY_HIVE"></span></a></li>
+                <li><a ui-sref="app.auth.hbase"><i class="fa fa-caret-right"></i><span data-translate="AUTH_POLICY_HBASE"></span></a></li>
+            </ul>
+        </li>
+
+		<li>
+            <a ui-sref="app.setting"><i class="fa fa-table"><span class="icon-bg bg-warning"></span></i><span data-translate="SYSTEM_SETTING"></span></a>
+            <ul>
+                <li><a ui-sref="app.setting.users"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-SETTING.USER.SYSTEM_SETTING_USERS"></span></a></li>
+				<li><a ui-sref="app.setting.groups"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-SETTING.GROUP.SYSTEM_SETTING_GROUPS"></span></a></li>
+                <li><a ui-sref="app.setting.permissions"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-SETTING.PERMISSION.SYSTEM_SETTING_PERMISSIONS"></span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a ui-sref="app.audit"><i class="fa fa-table"><span class="icon-bg bg-warning"></span></i><span data-translate="SYSTEM_AUDIT"></span></a>
+            <ul>
+                <li><a ui-sref="app.audit.access"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-AUDIT.ACCESS_LABEL"></span></a></li>
+                <li><a ui-sref="app.audit.admin"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-AUDIT.ADMIN_LABEL"></span></a></li>
+                <li><a ui-sref="app.audit.login_sessions"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-AUDIT.LOGIN_SESSIONS_LABEL"></span></a></li>
+                <li><a ui-sref="app.audit.plugins"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-AUDIT.PLUGINS_LABEL"></span></a></li>
+                <li><a ui-sref="app.audit.plugin_status"><i class="fa fa-caret-right"></i><span data-translate="SYSTEM-AUDIT.PLUGIN_STATUS_LABEL"></span></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

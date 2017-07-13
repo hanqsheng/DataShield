@@ -1,0 +1,47 @@
+<div class="page page-table">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate="SYSTEM-SETTING.PERMISSION.SYSTEM_SETTING_PERMISSIONS_LIST">
+        </div>
+        <div class="row  m-b m-l m-t">
+            <div class="col-lg-6">
+            </div>
+            <div  class="col-lg-3 col-lg-offset-3">
+                <div class="btn-group dropdown open" dropdown="" style="">
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th translate="SYSTEM-SETTING.PERMISSION.PERMISSION">permission</th>
+                <th translate="SYSTEM-SETTING.PERMISSION.GROUP">Group</th>
+                <th translate="SYSTEM-SETTING.PERMISSION.USER">User</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="obj in permissionTable">
+                <td><a href="javascript:void(0);" ng-click="editPermission(obj.id)">{{obj.module}}</a></td>
+                <td>
+                    <span ng-if="obj.groupPermList.length==0">--</span>
+                    <span style="margin-right: .3em" ng-repeat="groupPerm in obj.groupPermList"
+                          class="label label-info">{{groupPerm.groupName}}</span>
+                </td>
+                <td>
+                    <span ng-if="obj.userPermList.length==0">--</span>
+                    <span style="margin-right: .3em" ng-repeat="userPerm in obj.userPermList"
+                          class="label label-info">{{userPerm.userName}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <p ng-show="tableloading">Loading</p>
+            <p ng-show="!tableLength > 0 && !tableloading">No data</p>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div id="page" class="pull-right"></div>
+            </div>
+        </footer>
+    </div>
+</div>

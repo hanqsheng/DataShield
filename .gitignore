@@ -1,0 +1,10 @@
+/target/
+/bin/
+/target
+.settings/
+.tmp/
+dist/
+node_modules/
+bower_components/
+.pydevproject
+*.log

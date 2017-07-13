@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <section class="panel panel-default">
+        <div class="group-heading"><span class="glyphicon" translate="SYSTEM-SETTING.GROUP.GROUP_DETAIL">Group Detail</span></div>
+        <div class="panel-body">
+            <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-touched" data-ng-submit="submitForm()">
+
+                <div class="row row-fluid m-b m-l m-t" >
+                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs">
+                        <span class="text-danger ">*</span><span  class="group-label-text" translate="SYSTEM-SETTING.GROUP.GROUP_NAME">Group Name</span>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <input type="text" id="name" name="name" ng-model="formData.name" class="form-control text-margin" ng-blur = "blurCheckName()" required/>
+                    </div>
+                </div>
+                <div class="row row-fluid m-b m-l m-t">
+                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs">
+                        <span class="group-label" translate="SYSTEM-SETTING.GROUP.DESCRIPTION">描述</span>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <textarea id="description" name="description" ng-model="formData.description" class="form-control textarea-margin" />
+                    </div>
+                </div>
+
+                <div class="row row-fluid m-b m-l m-t">
+                    <div  class="col-lg-3 col-md-6 col-sm-6">
+                        <input type="hidden" name="id" value="{{id}}" />
+                        <button type="submit" class="btn btn-primary" translate="OTHER.SAVE">保存</button>
+                        <button type="button" class="btn btn-inverse" ng-click="goBack()" translate="OTHER.BACK">返回</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

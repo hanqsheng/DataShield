@@ -1,0 +1,240 @@
+<div class="container-fluid">
+    <section class="panel panel-default">
+        <div class="group-heading"><span class="glyphicon" translate="CERTIFICATE.USER_INFO.NAV_NAME">User Infp</span></div>
+        <div class="panel-body">
+<!--            <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-touched" data-ng-submit="submitForm()">
+                <div class="row row-fluid m-b m-l m-t" >
+                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs">
+                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_SOURCE">Sync Source</span>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1">
+                        <select id="selectSyncSource" class="form-control">
+                            <option value="unix">UNIX</option>
+                            <option value="ldap">LDAP/AD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-fluid m-b m-l m-t">
+                    <div  class="col-lg-3 col-md-6 col-sm-6">
+                        <input type="hidden" name="id" value="{{id}}" />
+                        <button type="submit" class="btn btn-primary" translate="OTHER.SAVE">保存</button>
+                        <button type="button" class="btn btn-inverse" ng-click="goBack()" translate="OTHER.BACK">返回</button>
+                    </div>
+                </div>
+            </form>-->
+            <form name="outerForm" class="tab-form-demo" data-ng-submit="submitForm()">
+                <div class="row row-fluid m-b m-l m-t" style="height: 60px">
+                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_SOURCE">Sync Source</span>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1">
+                        <select id="selectSyncSource" class="form-control" data-ng-model="formData.syncSource" style="width:initial;margin-left: -190px;" ng-change="checkField()">
+                            <option value="unix">UNIX</option>
+                            <option value="ldap">LDAP/AD</option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-show="sourceLDAP">
+                    <uib-tabset active="activeForm">
+                        <uib-tab index="0" heading="{{'CERTIFICATE.USER_INFO.COMMON_CONFIGS' | translate}}">
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.LDAP/AD_URL">LDAP/AD URL</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="ldap_url" name="ldap_url" placeholder="ldap://hostname:389" ng-model="formData.ldap_url" class="form-control text-margin" ng-blur = "blurCheckURL()"/>
+                                </div>
+                            </div>
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_BIND_DN">Bind User</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="bind_user" placeholder="cn=admin,ou=users,dc=hadoop,dc=apache,dc-org" name="bind_user" ng-model="formData.bind_user" class="form-control text-margin" ng-blur = "blurCheckBind()"/>
+                                </div>
+                            </div>
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_BIND_PASSWORD">Bind User Password</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="password" id="password" name="password" ng-model="formData.password" class="form-control text-margin" ng-blur = "blurCheckBindPwd()"/>
+                                </div>
+                            </div>
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.CONFIRM_PASSWORD">Confirm Password</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="password" id="repassword" name="repassword" ng-model="formData.repassword" class="form-control text-margin" ng-blur = "blurCheckRepwd()"/>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="1" heading="{{'CERTIFICATE.USER_INFO.USER_CONFIGS' | translate}}">
+                            <!-------------------------------------Username Attribute--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_USER_NAME_ATTRIBUTE">Username Attribute</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="username_attr" name="username_attr" ng-model="formData.username_attr" class="form-control text-margin" ng-blur = "blurCheckUserAttr()"/>
+                                </div>
+                            </div>
+
+                            <!-------------------------------------User Object Class--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_USER_OBJECT_CLASS">User Object Class​</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="userObject_class" name="userObject_class" ng-model="formData.userObject_class" class="form-control text-margin" ng-blur = "blurCheckUserObjectClass()"/>
+                                </div>
+                            </div>
+
+                            <!-------------------------------------User Search Base--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_USER_SEARCH_BASE">User Search Base</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="userSearch_base" placeholder="ou=users,dc=hadoop,dc=apache,dc=org" name="userSearch_base" ng-model="formData.userSearch_base" class="form-control text-margin" ng-blur = "blurCheckUserSearchBase()"/>
+                                </div>
+                            </div>
+
+                            <!-------------------------------------User Search Filter--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_USER_SEARCH_FILTER">User Search Filter</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="userSearch_filter" name="userSearch_filter" ng-model="formData.userSearch_filter" class="form-control text-margin" ng-blur = "blurCheckUserSearchFilter()"/>
+                                </div>
+                            </div>
+
+                            <!-------------------------------------User Search Scope--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_USER_SEARCH_SCOPE">User Search Scope</span>
+                                </div>
+                                <!--<div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="userSearch_scope" name="userSearch_scope" ng-model="formData.userSearch_scope" class="form-control text-margin" ng-blur = "blurCheckUserSearchScope()" required/>
+                                </div>-->
+                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                    <select id="userSearch_scope" class="form-control text-margin ng-pristine ng-invalid ng-invalid-required ng-touched" style="width:initial" data-ng-model="formData.userSearch_scope" ng-change="checkUserSearchScope()">
+                                        <option value="sub">sub</option>
+                                        <option value="one">one</option>
+                                        <option value="base">base</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-------------------------------------User Group Name Attribute--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_USER_GROUP_NAME_ATTRIBUTE">User Group Name Attribute</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <input type="text" id="userGroupName_attr" name="userGroupName_attr" ng-model="formData.userGroupName_attr" class="form-control text-margin" ng-blur = "blurCheckUserGroupNameAttr()"/>
+                                </div>
+                            </div>
+
+                            <!-------------------------------------Group User Map Sync--------------------------------------------------->
+                            <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                    <span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_USER_MAP_SYNC_ENABLED">Group User Map Sync</span>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <label class="switch text-margin ng-pristine ng-invalid ng-invalid-required ng-touched"><input class="switch" type="checkbox" name="groupUserMap_sync"  ng-model="formData.groupUserMap_sync"><i></i></label>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="2" heading="{{'CERTIFICATE.USER_INFO.GROUP_CONFIGS' | translate}}">
+
+                            <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Enable Group Sync-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                            <!--<div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">-->
+                                <!--<div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">-->
+                                    <!--<span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_SYNC_ENABLE">Enable Group Sync</span>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-2 col-md-3 col-sm-3">-->
+                                    <!--<label class="switch text-margin ng-pristine ng-invalid ng-invalid-required ng-touched"><input class="switch" type="checkbox" name="groupSync_enable"  ng-model="formData.groupSync_enable" data-ng-click="enableGroupSync()"><i></i></label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                           <!-- <div data-ng-show="enable_group_sync">-->
+                                <!-------------------------------------User Group Name Attribute--------------------------------------------------->
+                                <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_MEMBER_ATTRIBUTE_NAME">Group Member Attribute</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" id="groupMember_attr" name="groupMember_attr" ng-model="formData.groupMember_attr" class="form-control text-margin" ng-blur = "blurCheckGroupMemberAttr()"/>
+                                    </div>
+                                </div>
+
+                                <!-------------------------------------Group Name Attribute--------------------------------------------------->
+                                <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_NAME_ATTRIBUTE">Group Name Attribute</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" id="groupName_attr" name="groupName_attr" ng-model="formData.groupName_attr" class="form-control text-margin" ng-blur = "blurCheckGroupNameAttr()"/>
+                                    </div>
+                                </div>
+
+                                <!-------------------------------------Group Object Class--------------------------------------------------->
+                                <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_OBJECT_CLASS">Group Object Class</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" id="groupObject_class" name="groupObject_class" ng-model="formData.groupObject_class" class="form-control text-margin" ng-blur = "blurCheckGroupObjectClass()"/>
+                                    </div>
+                                </div>
+
+                                <!-------------------------------------Group Search Base--------------------------------------------------->
+                                <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_SEARCH_BASE">Group Search Base</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" id="groupSearch_base" name="groupSearch_base" placeholder="ou=groups,dc=hadoop,dc=apache,dc=org" ng-model="formData.groupSearch_base" class="form-control text-margin" ng-blur = "blurCheckGroupSearchBase()"/>
+                                    </div>
+                                </div>
+
+                                <!-------------------------------------Group Search Filter--------------------------------------------------->
+                                <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                        <span class="text-danger ">*</span><span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_LDAP_GROUP_SEARCH_FILTER">Group Search Filter</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" id="groupSearch_filter" name="groupSearch_filter" ng-model="formData.groupSearch_filter" class="form-control text-margin" ng-blur = "blurCheckGroupSearchFilter()"/>
+                                    </div>
+                                </div>
+                                <!-------------------------------------Enable Group Search--------------------------------------------------->
+                                <div class="row row-fluid m-b m-l m-t" style="margin-top: 20px">
+                                    <div  class="col-lg-2 col-md-3 col-sm-3 m-t-xs" style="margin-top: 8px">
+                                        <span  class="group-label-text" translate="CERTIFICATE.USER_INFO.SYNC_GROUP_SEARCH_ENABLE">Enable Group Search</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <label class="switch text-margin ng-pristine ng-invalid ng-invalid-required ng-touched"><input class="switch" type="checkbox" name="groupSearch_enable"  ng-model="formData.groupSearch_enable" data-ng-click="enableGroupSearch()"><i></i></label>
+                                    </div>
+                                </div>
+                            <!--</div>-->
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+
+                <div class="row row-fluid m-b m-l m-t">
+                    <div  class="col-lg-3 col-md-6 col-sm-6" style="margin-top: 50px">
+                        <input type="hidden" name="id" value="{{id}}" />
+                        <button type="submit" class="btn btn-primary" translate="OTHER.SAVE">保存</button>
+                        <button type="button" class="btn btn-inverse" ng-click="goDiscard()" translate="OTHER.DISCARD">放弃</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+

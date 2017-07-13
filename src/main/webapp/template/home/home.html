@@ -1,0 +1,12 @@
+<div data-ng-hide="isSpecificPage()"
+     data-ng-cloak>
+    <section data-ng-include=" 'template/layout/header.html' "
+             id="header" class="top-header"></section>
+
+    <aside data-ng-include=" 'template/layout/nav.html' "
+           id="nav-container"></aside>
+</div>
+
+<div class="view-container">
+    <section id="content" class="animate-fade-up" ui-view></section>
+</div>
